@@ -88,14 +88,41 @@ $(function () {
         'images/img_01_06.png',
         'images/img_01_07.png',
         'images/img_01_08.png',
-        'images/img_01_09.png'
+        'images/img_01_09.png',
+        'images/img_02_01.png',
+        'images/img_02_02.png',
+        'images/img_02_03.png',
+        'images/img_02_04.png',
+        'images/img_02_05.png',
+        'images/img_02_06.png',
+        'images/img_02_07.png',
+        'images/img_02_08.png',
+        'images/img_03_01.png',
+        'images/img_03_02.png',
+        'images/img_03_03.png',
+        'images/img_03_04.png',
+        'images/img_03_05.png',
+        'images/img_04_01.png',
+        'images/img_04_02.png',
+        'images/img_04_03.png',
+        'images/img_04_04.png',
+        'images/img_04_05.png',
+        'images/img_05_01.png',
+        'images/img_05_02.png',
+        'images/img_05_03.png',
+        'images/img_05_04.png',
+        'images/img_05_05.png',
+        'images/img_06_01.png',
     ];
     $('.progress-num').uImgLoad(pics,$('.progress-num'),function () {
-        // $('.page-loading').fadeOut('fast', function () {
-        //     $('.login').fadeIn('fast');
-        // });
-        $('.page-loading').hide();
-        
+        $('.page-loading').fadeOut('fast', function () {
+            $('.login').fadeIn('fast');
+        });
+        $('.first-content .ani').each(function () {
+            var thisanimate = $(this).attr('swiper-animate-effect');
+            $(this).removeClass(thisanimate);
+            $(this).removeClass('animated');
+        });
     });
     
 
@@ -106,9 +133,9 @@ $(function () {
     });
 
     //点击登录
-    $('.login-form-submit').on('touchend', function () {
-        var tel = $('.login-form-tel').val();
-        var code = $('.login-form-code').val();
+    $('#login').on('touchend', function () {
+        var tel = $('#loginTel').val();
+        var code = $('#loginCode').val();
         if (tel === '') {
             alert('请您输入电话号码！');
             return false;
@@ -124,7 +151,6 @@ $(function () {
         $('.first-content .ani').each(function () {
             var thisanimate = $(this).attr('swiper-animate-effect');
             $(this).addClass(thisanimate);
-
         });
     });
 
@@ -133,10 +159,10 @@ $(function () {
         direction: 'vertical',
         loop: false,
         mousewheelControl : true,
-        // onInit: function(swiper){
-        //     swiperAnimateCache(swiper);
-        //     swiperAnimate(swiper);
-        // }, 
+        onInit: function(swiper){
+            swiperAnimateCache(swiper);
+            swiperAnimate(swiper);
+        }, 
         onSlideChangeEnd: function(swiper){ 
           swiperAnimate(swiper);
         } 

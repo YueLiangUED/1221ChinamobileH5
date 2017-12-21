@@ -26,7 +26,7 @@
         // 尺寸脚本
         ;(function (global) {
             function remChange() {
-                document.documentElement.style.fontSize = 100 * document.documentElement.clientWidth / 720 + 'px';
+                document.documentElement.style.fontSize = 100 * document.documentElement.clientWidth / 750 + 'px';
             }
             remChange();
             global.addEventListener('resize', remChange, false);
@@ -60,12 +60,12 @@
                     <span>WELCOME</span><i></i>
                 </div>
                 <div class="login-form-group">
-                    <span class="login-form-title">手机号：</span><input class="login-form-tel" type="tel" />
+                    <span class="login-form-title">手机号：</span><input class="login-form-tel" id="loginTel" type="tel" />
                 </div>
                 <div class="login-form-group">
-                    <span class="login-form-title">验证码：</span><input class="login-form-code" type="tel" /><span class="login-form-code-btn">获取验证码</span>
+                    <span class="login-form-title">验证码：</span><input class="login-form-code" id="loginCode" type="tel" /><span class="login-form-code-btn">获取验证码</span>
                 </div>
-                <input class="login-form-submit" type="button" value="登录" />
+                <input class="login-form-submit" id="login" type="button" value="登录" />
             </div>
         </div>
         
@@ -78,7 +78,7 @@
                     <div class="logo">
                         <img src="images/logo.png" alt="" />
                     </div>
-                    <div class="first-content">
+                    <div class="first-content slide-content">
                         <img class="img_01_01 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" src="images/img_01_01.png" alt="" />
                         <img class="img_01_03 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_03.png" alt="" />
                         <img class="img_01_02 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_02.png" alt="" />
@@ -89,19 +89,101 @@
                         <img class="img_01_08 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" src="images/img_01_08.png" alt="" />
                         <img class="img_01_09 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" src="images/img_01_09.png" alt="" />
                     </div>
+                    <div class="slide-btn">
+                        <img src="images/slid-btn.png" alt="" />
+                    </div>
                 </div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-            </div>
-            <div class="slide-btn">
-                <img src="images/slid-btn.png" alt="" />
+                <!-- 第二页 -->
+                <div class="swiper-slide">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </div>
+                    <div class="slide-content">
+                        <img class="first-img img_02_01 ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_02_01.png" alt="" />
+                        <img class="first-img img_02_03" src="images/img_02_03.png" alt="" />
+                        <div class="se-item img_02_04 ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0">
+                            <img class="" src="images/img_02_04.png" alt="" />
+                        </div>
+                        <div class="se-item img_02_05 ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0">
+                            <img class="" src="images/img_02_05.png" alt="" />
+                        </div>
+                        <div class="se-item img_02_06 ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0">
+                            <img class="" src="images/img_02_06.png" alt="" />
+                        </div>
+                        <div class="se-item img_02_07 ani"  swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0">
+                            <img class="" src="images/img_02_07.png" alt="" />
+                        </div>
+                        <div class="se-item img_02_08 ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0">
+                            <img class="" src="images/img_02_08.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="slide-btn">
+                        <img src="images/slid-btn.png" alt="" />
+                    </div>
+                </div>
+                <!-- 第三页 -->
+                <div class="swiper-slide">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </div>
+                    <div class="slide-content three-content">
+                        <img class="first-img img_03_01 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_03_01.png" alt="" />
+                        <img class="first-img img_03_02 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_03_02.png" alt="" />
+                        <img class="first-img img_03_03 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_03_03.png" alt="" />
+                        <img class="first-img img_03_04 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_03_04.png" alt="" />
+                    </div>
+                    <div class="slide-btn">
+                        <img src="images/slid-btn.png" alt="" />
+                    </div>
+                </div>
+                <!-- 第四页 -->
+                <div class="swiper-slide">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </div>
+                    <div class="slide-content four-content">
+                        <img class="first-img img_04_01 ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_04_01.png" alt="" />
+                        <img class="first-img img_04_02 ani" swiper-animate-effect="rotateInUpRight" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_04_02.png" alt="" />
+                        <img class="first-img img_04_03 ani" swiper-animate-effect="rotateInUpLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_04_03.png" alt="" />
+                        <img class="first-img img_04_04 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_04_04.png" alt="" />
+                    </div>
+                    <div class="slide-btn">
+                        <img src="images/slid-btn.png" alt="" />
+                    </div>
+                </div>
+                <!-- 第五页 -->
+                <div class="swiper-slide">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </div>
+                    <div class="slide-content five-content">
+                        <img class="first-img img_05_01 ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_05_01.png" alt="" />
+                        <img class="first-img img_05_02 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_05_02.png" alt="" />
+                        <img class="first-img img_05_03 ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_05_03.png" alt="" />
+                        <img class="first-img img_05_04 ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_05_04.png" alt="" />
+                        <img class="first-img img_05_05 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_05_05.png" alt="" />
+                    </div>
+                    <div class="slide-btn">
+                        <img src="images/slid-btn.png" alt="" />
+                    </div>
+                </div>
+                 <!-- 第六页 -->
+                <div class="swiper-slide">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </div>
+                    <div class="slide-content six-content">
+                        <img class="first-img img_06_01"src="images/img_05_01.png" alt="" />
+                        <div class="login-form-group">
+                            <span class="login-form-title">手机号：</span>
+                            <input class="login-form-tel" type="tel">
+                        </div>
+                        <input class="login-form-submit" type="button" value="确认">
+                        <p class="shuom">京移动为您准备了专属的业务体验包，请您填写移动手机号码（可填写他人移动号码进行转增），体验套餐将立即送达。</p>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        
-        
-        
-        
     </div>
     <!-- 页面html代码结束 -->
     <script type="text/javascript" src="js/swiper.jquery.min.js"></script>
