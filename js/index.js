@@ -1,5 +1,11 @@
 $(function () {
     /********************************************扩展$函数************************************************/
+    // 禁止用户TAB键
+    $('input').on('keydown', function (event) {
+        if (event.key == 'Tab' || event.keyCode == 9) {
+            return false;
+        }
+    });
 
     /*
      *图片预加载
@@ -75,10 +81,10 @@ $(function () {
         var audio = document.getElementById("myAudio");
         $('.audio-control').on('touchend', function () {
             if (audio.paused) {
-                $(this).addClass('audioRotate');
+                $('.audio-control-icon').addClass('audioRotate');
                 audio.play();
             } else {
-                $(this).removeClass('audioRotate');
+                $('.audio-control-icon').removeClass('audioRotate');
                 audio.pause()
             }
         });
@@ -141,6 +147,8 @@ $(function () {
         'images/img_06_01.png',
         'images/img_07_01.png',
         'images/img_07_02.png',
+        'images/img_07_03.png',
+        'images/img_07_04.png',
         'images/img_08_01.png',
         'images/img_08_02.png',
         'images/img_08_03.png',

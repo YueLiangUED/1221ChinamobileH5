@@ -29,6 +29,8 @@ html,body {
 /*页面视口样式设置*/
 .view-wraper {
     position: relative;
+    /*width: 100%;
+    overflow-x: hidden;*/
     min-height: 100%;
 }
 
@@ -462,7 +464,7 @@ input.login-form-code {
 }
 /*第七页设置*/
 .seven-content {
-    background: url("../images/img_07_02.png") no-repeat center;
+    background: url("../images/img_07_04.png") no-repeat center;
     background-size: 100%;
 }
 .img_07_01 {
@@ -471,20 +473,17 @@ input.login-form-code {
     height: 1.17rem;
     margin-left: -0.85rem;
 }
-.qianyan-box {
-    position: absolute;
-    top: 3.5rem;
-    left: 50%;
-    width: 6rem;
-    height: 7.5rem;
-    margin-left: -3rem;
-    overflow: hidden;
+.img_07_02 {
+    top: 3.08rem;
+    width: 5.93rem;
+    height: 8.11rem;
+    margin-left: -2.965rem;
 }
-.qianyan {
-    text-indent: 2em;
-    font-size: 0.3rem;
-    color: #666;
-    line-height: 1.5em;
+.img_07_03 {
+    top: 2.2rem;
+    width: 6.11rem;
+    height: 4.89rem;
+    margin-left: -3.05rem;
 }
 /*第八页设置*/
 .eight-content {
@@ -621,9 +620,17 @@ input.login-form-code {
     right: 0;
     width: 1.2rem;
     height: 1.2rem;
-    background: url("../images/control-icon.png") no-repeat center;
-    background-size: 0.7rem 0.7rem;
     z-index: 600;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+.audio-control-icon {
+    width: 0.7rem;
+    height: 0.7rem;
+    background: url("../images/control-icon.png") no-repeat center;
+    background-size: 100%;
 }
 .audioRotate {
     animation: audioRotate 1s infinite linear;
