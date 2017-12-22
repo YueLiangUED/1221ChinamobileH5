@@ -70,7 +70,7 @@
         </div>
         
         <!-- H5 -->
-        <div class="swiper-container">
+        <div class="swiper-container" style="display: none;">
             <div class="swiper-wrapper">
                 <!-- 第一页 -->
                 <div class="swiper-slide">
@@ -78,15 +78,15 @@
                         <img src="images/logo.png" alt="" />
                     </div>
                     <div class="first-content slide-content">
-                        <img class="img_01_01 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s" src="images/img_01_01.png" alt="" />
-                        <img class="img_01_03 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.6s" src="images/img_01_03.png" alt="" />
-                        <img class="img_01_02 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.6s" src="images/img_01_02.png" alt="" />
-                        <img class="img_01_04 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s" src="images/img_01_04.png" alt="" />
-                        <img class="img_01_05 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s" src="images/img_01_05.png" alt="" />
-                        <img class="img_01_06 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.6s" src="images/img_01_06.png" alt="" />
-                        <img class="img_01_07 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.6s" src="images/img_01_07.png" alt="" />
-                        <img class="img_01_08 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s" src="images/img_01_08.png" alt="" />
-                        <img class="img_01_09 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s" src="images/img_01_09.png" alt="" />
+                        <img class="img_01_01 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_01.png" alt="" />
+                        <img class="img_01_03 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_01_03.png" alt="" />
+                        <img class="img_01_02 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_01_02.png" alt="" />
+                        <img class="img_01_04 first-img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_04.png" alt="" />
+                        <img class="img_01_05 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_05.png" alt="" />
+                        <img class="img_01_06 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_01_06.png" alt="" />
+                        <img class="img_01_07 first-img ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0" src="images/img_01_07.png" alt="" />
+                        <img class="img_01_08 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_08.png" alt="" />
+                        <img class="img_01_09 first-img ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" src="images/img_01_09.png" alt="" />
                     </div>
                     <div class="slide-btn">
                         <img src="images/slid-btn.png" alt="" />
@@ -285,6 +285,22 @@
             <div class="audio-control-icon audioRotate"></div>
         </div>
         <audio id="myAudio" src="music/1.mp3" autoplay loop preload></audio>
+    </div>
+    <div class="modal" id="modal" style="display: none;">
+        <div class="flex justify-center align-center modal-flex">
+            <div class="modal-content">
+                <div class="modal-title">
+                    登录成功
+                </div>
+                <div class="modal-body">
+                    <p class="modal-text"></p>
+                    <div class="modal-enter">
+                        确认
+                    </div>
+                </div>
+                <div class="modal-close"></div>
+            </div>
+        </div>
     </div>
     <!-- 页面html代码结束 -->
     <script type="text/javascript" src="js/swiper.jquery.min.js"></script>

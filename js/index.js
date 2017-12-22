@@ -7,74 +7,134 @@ $(function () {
         }
     });
 
-    /*
-     *图片预加载
-     *参数： pics:图片数组
-     *       callback： 图片加载完毕回调函数
-     *       num：进度
-     *       
-     */
-    $.fn.uImgLoad = function (pics, num, callback) {
-        var index = 0;
-        var len = pics.length;
-        var img = new Image();
-        var flag = false;
+    
+    $.fn.extend({
+        /*
+         *图片预加载
+         *参数： pics:图片数组
+         *       callback： 图片加载完毕回调函数
+         *       num：进度 
+        */
+        uImgLoad: function (pics, num, callback) {
+            var index = 0;
+            var len = pics.length;
+            var img = new Image();
+            var flag = false;
 
-        var progress = function(w){
-            num.html(w);
-        }
+            var progress = function(w){
+                num.html(w);
+            }
 
-        var load = function(){
-            img.src = pics[index];
-            img.onload = function() {
-                progress(Math.floor(((index + 1) / len) * 100) + "%");
-                index ++ ;
-                if (index < len) {
-                    load();
-                }else{
-                    callback();
+            var load = function(){
+                img.src = pics[index];
+                img.onload = function() {
+                    progress(Math.floor(((index + 1) / len) * 100) + "%");
+                    index ++ ;
+                    if (index < len) {
+                        load();
+                    }else{
+                        callback();
+                    }
+                }
+                return img;
+            }
+            if(len > 0){
+                load();
+            }else{
+                progress("100%");
+            }
+        },
+        /*
+         *获取验证码倒计时
+         *参数： time：倒计时时间 单位S
+        */
+        getCode: function (time) {
+            // 倒计时秒数
+            var now = time;
+
+            var $this = $(this);
+            var isGet = $this.data('isget');
+            if (isGet === 'true') {
+                return false;
+            } else if (isGet === 'false' || isGet === undefined) {
+                $this.data('isget','true');
+                $this.addClass('active');
+                $this.html('<i>'+now+'</i>s后获取');
+                var timer = timer = setInterval(function () {
+                    if (now>1) {
+                        now -= 1;
+                        $this.html('<i>'+ now +'</i>s后获取');
+                    }
+                }, 1000);
+                setTimeout(function () {
+                    $this.removeClass('active');
+                    $this.html('获取验证码');
+                    $this.data('isget','false');
+                    timer = null;
+                },now * 1000);
+            }
+        },
+        /*
+        *弹窗功能
+        *   option：{
+                modalEle: '#modal', //弹窗元素
+                modalTile: '提示',   //弹窗title
+                modalText: '请输入您的手机号码！', //弹窗文字
+                modalEnter: function (modal) { //点击确定回调函数
+                    modal.Close();
                 }
             }
-            return img;
-        }
-        if(len > 0){
-            load();
-        }else{
-            progress("100%");
-        }
-    };
+        * 
+        */
+        creatModal: function (option) {
+            // 创建modal对象
+            var Modal = function () {
+                this.ele = option.modalEle;
+                this.title = option.modalTitle;
+                this.text = option.modalText;
+                this.init();
+                this.Show();
+            }
+            // 添加方法
+            Modal.prototype = {
+                init: function () {
+                    var _this = this;
+                    var $modal = $(this.ele);
+                    console.log(this.title);
+                    var modalTitle = $modal.find('.modal-title').html(this.title);
+                    var modalText = $modal.find('.modal-text').html(this.text);
+                    var $modalClose = $modal.find('.modal-close');
+                    var $enter = $modal.find('.modal-enter');
+                    if (option.closeShow == false) {
+                        $modalClose.hide();
+                    } else {
+                        $modalClose.show();
+                    }
+                    $modalClose.on('touchend', function () {
+                        _this.Close();
+                    });
+                    $enter.on('touchend', function () {
+                        option.modalEnter(_this);
+                    });
 
-
-    /*
-     *获取验证码倒计时
-     *参数： time：倒计时时间 单位S
-     */
-    $.fn.getCode = function (time) {
-        // 倒计时秒数
-        var now = time;
-
-        var $this = $(this);
-        var isGet = $this.data('isget');
-        if (isGet === 'true') {
-            return false;
-        } else if (isGet === 'false' || isGet === undefined) {
-            $this.data('isget','true');
-            $this.addClass('active');
-            $this.html('<i>'+now+'</i>s后获取');
-            var timer = timer = setInterval(function () {
-                if (now>1) {
-                    now -= 1;
-                    $this.html('<i>'+ now +'</i>s后获取');
+                },
+                Close: function () {
+                    $(this.ele).fadeOut();
+                },
+                Show: function () {
+                    $(this.ele).fadeIn();
                 }
-            }, 1000);
-            setTimeout(function () {
-                $this.removeClass('active');
-                $this.html('获取验证码');
-                $this.data('isget','false');
-                timer = null;
-            },now * 1000);
+            }
+            // 创建modal对象
+            return new Modal();
+
         }
-    };
+    });
+    
+
+
+    
+    
 
     // 背景音乐
     ;(function () {
@@ -95,6 +155,8 @@ $(function () {
         direction: 'vertical',
         loop: false,
         mousewheelControl : true,
+        observer: true,
+        observeParents: true,
         onInit: function(swiper){
             swiperAnimateCache(swiper);
             swiperAnimate(swiper);
@@ -192,25 +254,75 @@ $(function () {
         var tel = $('#loginTel').val();
         var code = $('#loginCode').val();
         if (tel === '') {
-            alert('请您输入电话号码！');
+            $(this).creatModal({
+                modalEle: '#modal',
+                modalTitle: '提示',
+                modalText: '请输入您的手机号码！',
+                modalEnter: function (modal) {
+                    modal.Close();
+                }
+            });
             return false;
         }
         if (code === '') {
-            alert('请您输入验证码！');
+            $(this).creatModal({
+                modalEle: '#modal',
+                modalTitle: '提示',
+                modalText: '请输入您收到的验证码！',
+                modalEnter: function (modal) {
+                    modal.Close();
+                }
+            });
             return false;
         }
 
-        // 需要在此验证用户手机号是否为受邀用户，如果非受邀用户提示：登录失败，您不是本次活动受邀用户！
 
 
 
-        // 验证成功后的操作
-        $('.login').slideUp();
-        $('.first-content .ani').addClass('animated');
-        $('.first-content .ani').each(function () {
-            var thisanimate = $(this).attr('swiper-animate-effect');
-            $(this).addClass(thisanimate);
+        //请在ajax异步回调之后调用此段代码 如果填写手机号码是非受邀用户执行此段代码
+
+        // $(this).creatModal({
+        //     modalEle: '#modal',
+        //     modalTitle: '登录失败',
+        //     modalText: '对不起，您不是本次活动受邀用户！',
+        //     modalEnter: function (modal) {
+        //         modal.Close(); 
+        //     }
+        // });
+
+
+
+        //请在ajax异步回调之后调用此段代码 验证码填写错误时执行此段代码
+        
+        // $(this).creatModal({
+        //     modalEle: '#modal',
+        //     modalTitle: '提示',
+        //     modalText: '验证码填写错误！',
+        //     modalEnter: function (modal) {
+        //         modal.Close(); 
+        //     }
+        // });
+
+        // 请在ajax异步回调之后调用此段代码 验证成功后执行此段代码
+        
+        $(this).creatModal({
+            modalEle: '#modal',
+            modalTitle: '登录成功',
+            modalText: '尊敬的客户您好，<br />文末的体验活动，静待您的参加！',
+            closeShow: false,
+            modalEnter: function (modal) {
+                $('.login').slideUp(function () {
+                    $('.swiper-container').show();
+                    $('.first-content .ani').addClass('animated');
+                    $('.first-content .ani').each(function () {
+                        var thisanimate = $(this).attr('swiper-animate-effect');
+                        $(this).addClass(thisanimate);
+                    });
+                });
+                modal.Close(); 
+            }
         });
+        
     });
 
     
@@ -218,18 +330,58 @@ $(function () {
     $('#enter').on('touchend', function () {
         var t = $('#handleInput').val();
         if (t === '') {
-            alert('请输入办理此业务的手机号码！');
+            $(this).creatModal({
+                modalEle: '#modal',
+                modalTitle: '提示',
+                modalText: '请输入您要办理此业务的手机号！',
+                modalEnter: function (modal) {
+                    modal.Close();
+                }
+            });
             return false;
         }
 
-        // 需要验证用户（受邀用户）：
-        //          是否已经赠送他人或为自己办理过体验包，如果办理过提示：您已经办理过业务体验包！
-        //          
-        //          输入的手机号（最后一页）是否已经办理过体验包，如果已经办理过提示：此号码已经办理过体验包！
-        //          
-        // 用户（受邀用户）未赠送过体验包或他人未给自己办理过体验包
-        alert("办理成功！");  
-        window.location.href="http://www.bj.10086.cn/m"     
+        //请在ajax异步回调之后调用此段代码
+        // (受邀用户)是否已经赠送他人或为自己办理过体验包，如果办理过提示：您已经办理过业务体验包！
+        
+        // $(this).creatModal({
+        //     modalEle: '#modal',
+        //     modalTitle: '办理失败',
+        //     modalText: '您已经办理过业务体验包！',
+        //     modalEnter: function (modal) {
+        //         modal.Close(); 
+        //     }
+        // });
+
+
+        //请在ajax异步回调之后调用此段代码
+        // 输入的手机号（最后一页）已经办理过业务体验包 
+        
+        // $(this).creatModal({
+        //     modalEle: '#modal',
+        //     modalTitle: '办理失败',
+        //     modalText: '此号码已经办理过体验包，<br />无须再次办理!',
+        //     modalEnter: function (modal) {
+        //         modal.Close(); 
+        //     }
+        // });
+        
+        //请在ajax异步回调之后调用此段代码
+        //办理成功后执行的代码
+        
+        $(this).creatModal({
+            modalEle: '#modal',
+            modalTitle: '提示',
+            modalText: '办理成功！',
+            modalEnter: function (modal) {
+                modal.Close();
+                window.location.href="http://www.bj.10086.cn/m"
+                 
+            }
+        });
+        
+
+             
     });
     
 
