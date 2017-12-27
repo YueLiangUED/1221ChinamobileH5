@@ -163,7 +163,7 @@ $(function () {
         }, 
         onSlideChangeEnd: function(swiper){ 
           swiperAnimate(swiper);
-        } 
+        }
     });
 
     /**********************************************绑定事件**********************************************/
@@ -172,7 +172,6 @@ $(function () {
     var pics = [
         'images/logo.png',
         'images/icon_01.png',
-        'images/login_bg.png',
         'images/slid-btn.png',
         'images/img_01_01.png',
         'images/img_01_02.png',
@@ -228,7 +227,31 @@ $(function () {
         'images/img_10_07.png',
         'images/img_10_08.png',
         'images/img_11_01.png',
-        'images/img_11_02.png'
+        'images/img_11_02.png',
+        'images/img_12_01.png',
+        'images/img_12_02.png',
+        'images/img_12_03.png',
+        'images/img_13_01.png',
+        'images/img_13_02.png',
+        'images/img_13_03.png',
+        'images/img_14_01.png',
+        'images/img_14_02.png',
+        'images/img_15_01.png',
+        'images/img_15_02.png',
+        'images/img_16_01.png',
+        'images/img_16_02.png',
+        'images/img_16_03.png',
+        'images/img_17_01.png',
+        'images/img_17_02.png',
+        'images/img_17_03.png',
+        'images/img_17_04.png',
+        'images/img_17_05.png',
+        'images/img_18_01.png',
+        'images/img_18_02.png',
+        'images/img_18_03.png',
+        'images/img_18_04.png',
+        'images/img_19_01.png',
+        'images/img_19_02.png'
     ];
 
     $('.progress-num').uImgLoad(pics,$('.progress-num'),function () {
@@ -378,12 +401,44 @@ $(function () {
                 window.location.href="http://www.bj.10086.cn/m"
                  
             }
-        });
-        
-
-             
+        });   
     });
-    
 
-    
+    // 企业文化跳转
+    $('.img_02_04').on('click', function () {
+        mySwiper.slideTo(4,300,true);
+    });
+    // 5G场景跳转
+    $('.img_02_05').on('click', function () {
+        mySwiper.slideTo(5,300,true);
+    });
+    // 集团业务跳转
+    $('.img_02_06').on('click', function () {
+        mySwiper.slideTo(11,300,true);
+    });
+    // 个人业务跳转
+    $('.img_02_07').on('click', function () {
+        mySwiper.slideTo(14,300,true);
+    });
+    // 业务体验跳转
+    $('.img_02_08').on('click', function () {
+        mySwiper.slideTo(19,300,true);
+    });
+
+    // 沟通管家跳转
+    $('.img_08_02').on('click', function () {
+        mySwiper.slideTo(15,300,true);
+    });
+    // 魔百盒跳转
+    $('.img_08_03').on('click', function () {
+        mySwiper.slideTo(16,300,true);
+    });
+    // 云世界跳转
+    $('.img_08_04').on('click', function () {
+        mySwiper.slideTo(17,300,true);
+    });
+    // 家宽产品跳转
+    $('.img_08_06').on('click', function () {
+        mySwiper.slideTo(18,300,true);
+    });
 });
